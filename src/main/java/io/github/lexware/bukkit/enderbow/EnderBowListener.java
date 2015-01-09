@@ -21,7 +21,7 @@ public class EnderBowListener implements Listener {
     
     @EventHandler
     public void onEntityShootBowEvent(EntityShootBowEvent event) {
-        if(event.getBow().getItemMeta().getDisplayName().equals("Ender bow")) {
+        if(event.getBow().hasItemMeta() && event.getBow().getItemMeta().getDisplayName().equals("Ender bow")) {
             event.getProjectile().setMetadata("enderBowData", new FixedMetadataValue(plugin, "enderArrow"));
         }
     }
