@@ -1,5 +1,6 @@
 package io.github.lexware.bukkit.enderbow;
 
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -27,7 +28,9 @@ public class EnderBowListener implements Listener {
     @EventHandler
     public void onProjectileHit(ProjectileHitEvent event) {
         if(event.getEntity().hasMetadata("enderBow") && event.getEntity().getMetadata("enderBow").contains("enderArrow")) {
-            event.getEntity()._INVALID_getShooter().teleport(event.getEntity().getLocation());
+            if(event.getEntity().getShooter() instanceof Entity) {
+                ((Entity)event.getEntity().getShooter()).teleport(event.getEntity().getLocation());
+            }
         }
     }
 }

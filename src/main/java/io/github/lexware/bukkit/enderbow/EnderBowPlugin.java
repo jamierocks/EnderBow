@@ -5,7 +5,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.mcstats.Metrics;
+import org.mcstats.MetricsLite;
 
 import java.io.IOException;
 
@@ -29,7 +29,7 @@ public class EnderBowPlugin extends JavaPlugin {
         getServer().addRecipe(enderBowRecipe);
 
         try {
-            Metrics metrics = new Metrics(this);
+            MetricsLite metrics = new MetricsLite(this);
             metrics.start();
         } catch (IOException e) {
             getLogger().info("Couldn't send Metrics data.");
