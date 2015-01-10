@@ -1,7 +1,21 @@
+/**
+ * Copyright 2015 Jamie Mansfield <https://github.com/lexware>
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package io.github.lexware.bukkit.enderbow;
 
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityShootBowEvent;
@@ -31,7 +45,9 @@ public class EnderBowListener implements Listener {
         if(event.getEntity().hasMetadata("enderBowData")) {
             for(MetadataValue value : event.getEntity().getMetadata("enderBowData")) {
                 if(value.asString().equals("enderArrow")) {
-                    ((Entity)event.getEntity().getShooter()).teleport(event.getEntity().getLocation());
+                    if(event.getEntity().getShooter() instanceof Entity) {
+                        ((Entity)event.getEntity().getShooter()).teleport(event.getEntity().getLocation());
+                    }
                 }
             }
         }
