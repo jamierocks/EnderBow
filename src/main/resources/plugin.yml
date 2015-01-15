@@ -1,3 +1,7 @@
 name: ${project.name}
 main: ${main.class}
 version: ${project.version}
+commands:
+  enderbow:
+    description: Give the caller an EnderBow
+    aliases: ebow, eb
