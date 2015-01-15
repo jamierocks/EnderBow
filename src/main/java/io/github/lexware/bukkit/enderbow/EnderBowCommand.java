@@ -27,8 +27,12 @@ import org.bukkit.inventory.ItemStack;
 public class EnderBowCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        ItemStack enderBow = new EnderBow();
-        Bukkit.getServer().getPlayer(sender.getName()).getInventory().addItem(enderBow);
+        if(sender.hasPermission("enderbow.spawn")) {
+            ItemStack enderBow = new EnderBow();
+            Bukkit.getServer().getPlayer(sender.getName()).getInventory().addItem(enderBow);
+        } else {
+            sender.sendMessage("You do not have sufficient permissions to spawn a Ender bow");
+        }
         return true;
     }
 }

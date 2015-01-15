@@ -5,3 +5,11 @@ commands:
   enderbow:
     description: Give the caller an EnderBow
     aliases: ebow, eb
+permissions:
+  enderbow.*:
+    description: Gives access to all EnderBow related commands
+    children:
+      enderbow.spawn: true
+  enderbow.spawn:
+    description: Give the caller an Ender bow
+    default: op

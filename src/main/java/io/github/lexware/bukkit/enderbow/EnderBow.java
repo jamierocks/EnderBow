@@ -19,6 +19,9 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by jamie on 11/01/15.
  */
@@ -26,9 +29,16 @@ public class EnderBow extends ItemStack {
     public EnderBow() {
         super(Material.BOW);
         
-        // Set ItemMeta (displayname etc)
+        // Get ItemMeta
         ItemMeta itemMeta = this.getItemMeta();
+        
+        // Set lore
+        List<String> lore = new ArrayList<String>();
+        lore.add("Teleportation");
+        
+        // Set ItemMeta
         itemMeta.setDisplayName("Ender bow");
+        
         this.setItemMeta(itemMeta);
     }
 }
