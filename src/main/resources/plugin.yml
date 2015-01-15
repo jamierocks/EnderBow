@@ -4,7 +4,9 @@ version: ${project.version}
 commands:
   enderbow:
     description: Give the caller an EnderBow
-    aliases: ebow, eb
+    aliases:
+      - eb
+      - ebow
 permissions:
   enderbow.*:
     description: Gives access to all EnderBow related commands
