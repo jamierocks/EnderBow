@@ -32,10 +32,6 @@ public class EnderBow extends ItemStack {
         // Get ItemMeta
         ItemMeta itemMeta = this.getItemMeta();
         
-        // Set lore
-        List<String> lore = new ArrayList<String>();
-        lore.add("Teleportation");
-        
         // Set ItemMeta
         itemMeta.setDisplayName("Ender bow");
         

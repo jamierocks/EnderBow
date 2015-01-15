@@ -16,16 +16,42 @@
 package io.github.lexware.bukkit.enderbow.api;
 
 import org.bukkit.entity.Projectile;
-import org.bukkit.event.entity.ProjectileHitEvent;
+import org.bukkit.event.Cancellable;
+import org.bukkit.event.Event;
+import org.bukkit.event.HandlerList;
 
 /**
  * Created by jamie on 15/01/15.
  */
-public class EnderArrowHitEvent extends ProjectileHitEvent {
-    public EnderArrowHitEvent(ProjectileHitEvent event) {
-        super(event.getEntity());
-    }
+public class EnderArrowHitEvent extends Event implements Cancellable {
+    private static final HandlerList handlers = new HandlerList();
+    private final Projectile projectile;
+    private boolean cancelled;
+
     public EnderArrowHitEvent(Projectile projectile) {
-        super(projectile);
+        this.projectile = projectile;
+    }
+    
+    public Projectile getProjectile() {
+        return projectile;
+    }
+
+    @Override
+    public boolean isCancelled() {
+        return cancelled;
+    }
+
+    @Override
+    public void setCancelled(boolean cancel) {
+        this.cancelled = cancel;
+    }
+
+    @Override
+    public HandlerList getHandlers() {
+        return handlers;
+    }
+
+    public static HandlerList getHandlerList() {
+        return handlers;
     }
 }

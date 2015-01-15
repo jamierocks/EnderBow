@@ -41,7 +41,7 @@ public class EnderBowListener implements Listener {
             EntityShootEnderBowEvent entityShootEnderBowEvent = new EntityShootEnderBowEvent(event);
             plugin.getServer().getPluginManager().callEvent(entityShootEnderBowEvent);
             if(!entityShootEnderBowEvent.isCancelled()) {
-                event.getProjectile().setMetadata("enderBowData", new FixedMetadataValue(plugin, "enderArrow"));
+                entityShootEnderBowEvent.getProjectile().setMetadata("enderBowData", new FixedMetadataValue(plugin, "enderArrow"));
             }
         }
     }
@@ -52,9 +52,11 @@ public class EnderBowListener implements Listener {
             for(MetadataValue value : event.getEntity().getMetadata("enderBowData")) {
                 if(value.asString().equals("enderArrow")) {
                     if(event.getEntity().getShooter() instanceof Entity) {
-                        EnderArrowHitEvent enderArrowHitEvent = new EnderArrowHitEvent(event);
+                        EnderArrowHitEvent enderArrowHitEvent = new EnderArrowHitEvent(event.getEntity());
                         plugin.getServer().getPluginManager().callEvent(enderArrowHitEvent);
-                        ((Entity)event.getEntity().getShooter()).teleport(event.getEntity().getLocation());
+                        if(!enderArrowHitEvent.isCancelled()) {
+                            ((Entity)event.getEntity().getShooter()).teleport(enderArrowHitEvent.getProjectile().getLocation());
+                        }
                     }
                 }
             }
