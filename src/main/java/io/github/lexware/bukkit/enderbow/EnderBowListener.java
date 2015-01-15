@@ -15,6 +15,8 @@
  */
 package io.github.lexware.bukkit.enderbow;
 
+import io.github.lexware.bukkit.enderbow.api.EnderArrowHitEvent;
+import io.github.lexware.bukkit.enderbow.api.EntityShootEnderBowEvent;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -36,7 +38,11 @@ public class EnderBowListener implements Listener {
     @EventHandler
     public void onEntityShootBowEvent(EntityShootBowEvent event) {
         if(event.getBow().hasItemMeta() && event.getBow().getItemMeta().getDisplayName().equals("Ender bow")) {
-            event.getProjectile().setMetadata("enderBowData", new FixedMetadataValue(plugin, "enderArrow"));
+            EntityShootEnderBowEvent entityShootEnderBowEvent = new EntityShootEnderBowEvent(event);
+            plugin.getServer().getPluginManager().callEvent(entityShootEnderBowEvent);
+            if(!entityShootEnderBowEvent.isCancelled()) {
+                event.getProjectile().setMetadata("enderBowData", new FixedMetadataValue(plugin, "enderArrow"));
+            }
         }
     }
     
@@ -46,6 +52,8 @@ public class EnderBowListener implements Listener {
             for(MetadataValue value : event.getEntity().getMetadata("enderBowData")) {
                 if(value.asString().equals("enderArrow")) {
                     if(event.getEntity().getShooter() instanceof Entity) {
+                        EnderArrowHitEvent enderArrowHitEvent = new EnderArrowHitEvent(event);
+                        plugin.getServer().getPluginManager().callEvent(enderArrowHitEvent);
                         ((Entity)event.getEntity().getShooter()).teleport(event.getEntity().getLocation());
                     }
                 }
