@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright 2015 Jamie Mansfield <https://github.com/lexware>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -31,7 +31,7 @@ public class EnderBowCommand implements CommandExecutor {
             ItemStack enderBow = new EnderBow();
             Bukkit.getServer().getPlayer(sender.getName()).getInventory().addItem(enderBow);
         } else {
-            sender.sendMessage("You do not have sufficient permissions to spawn a Ender bow");
+            sender.sendMessage("You do not have sufficient permissions to spawn an Ender bow");
         }
         return true;
     }

@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright 2015 Jamie Mansfield <https://github.com/lexware>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -33,8 +33,7 @@ public class EnderBowPlugin extends JavaPlugin {
 
         getCommand("enderbow").setExecutor(new EnderBowCommand());
 
-        ItemStack enderBow = new EnderBow();
-        ShapedRecipe enderBowRecipe = new ShapedRecipe(enderBow);
+        ShapedRecipe enderBowRecipe = new ShapedRecipe(new EnderBow());
         enderBowRecipe.shape("eee", "ebe", "eee");
         enderBowRecipe.setIngredient('e', Material.ENDER_PEARL);
         enderBowRecipe.setIngredient('b', Material.BOW);

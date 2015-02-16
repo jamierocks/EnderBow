@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright 2015 Jamie Mansfield <https://github.com/lexware>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,22 +19,16 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by jamie on 11/01/15.
  */
 public class EnderBow extends ItemStack {
     public EnderBow() {
         super(Material.BOW);
-        
-        // Get ItemMeta
+
         ItemMeta itemMeta = this.getItemMeta();
-        
-        // Set ItemMeta
         itemMeta.setDisplayName("Ender bow");
-        
+
         this.setItemMeta(itemMeta);
     }
 }
