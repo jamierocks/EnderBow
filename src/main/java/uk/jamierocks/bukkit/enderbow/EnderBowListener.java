@@ -15,6 +15,7 @@
  */
 package uk.jamierocks.bukkit.enderbow;
 
+import org.bukkit.Sound;
 import uk.jamierocks.bukkit.enderbow.api.EntityShootEnderBowEvent;
 import org.bukkit.entity.EnderPearl;
 import org.bukkit.event.EventHandler;
@@ -39,6 +40,7 @@ public class EnderBowListener implements Listener {
             plugin.getServer().getPluginManager().callEvent(entityShootEnderBowEvent);
             if(!entityShootEnderBowEvent.isCancelled()) {
                 event.getEntity().launchProjectile(EnderPearl.class).setVelocity(event.getProjectile().getVelocity());
+                event.getEntity().getWorld().playSound(event.getEntity().getLocation(), Sound.ENDERMAN_TELEPORT, 1, 1);
                 event.setCancelled(true);
             }
         }
