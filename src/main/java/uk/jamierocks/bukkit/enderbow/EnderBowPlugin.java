@@ -16,7 +16,9 @@
 package uk.jamierocks.bukkit.enderbow;
 
 import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.mcstats.MetricsLite;
 
@@ -26,13 +28,22 @@ import java.io.IOException;
  * Created by jamie on 09/01/15.
  */
 public class EnderBowPlugin extends JavaPlugin {
+    private static final ItemStack enderBow = new ItemStack(Material.BOW) {
+        {
+            ItemMeta itemMeta = this.getItemMeta();
+            itemMeta.setDisplayName("Ender bow");
+
+            this.setItemMeta(itemMeta);
+        }
+    };
+    
     @Override
     public void onEnable() {
         getServer().getPluginManager().registerEvents(new EnderBowListener(this), this);
 
         getCommand("enderbow").setExecutor(new EnderBowCommand());
 
-        ShapedRecipe enderBowRecipe = new ShapedRecipe(new EnderBow());
+        ShapedRecipe enderBowRecipe = new ShapedRecipe(getEnderBow());
         enderBowRecipe.shape("eee", "ebe", "eee");
         enderBowRecipe.setIngredient('e', Material.ENDER_PEARL);
         enderBowRecipe.setIngredient('b', Material.BOW);
@@ -50,5 +61,9 @@ public class EnderBowPlugin extends JavaPlugin {
     @Override
     public void onDisable() {
         getServer().resetRecipes();
+    }
+    
+    public static ItemStack getEnderBow() {
+        return enderBow;
     }
 }
