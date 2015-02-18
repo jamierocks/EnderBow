@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.lexware.bukkit.enderbow;
+package uk.jamierocks.bukkit.enderbow;
 
-import io.github.lexware.bukkit.enderbow.api.EntityShootEnderBowEvent;
+import uk.jamierocks.bukkit.enderbow.api.EntityShootEnderBowEvent;
 import org.bukkit.entity.EnderPearl;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;

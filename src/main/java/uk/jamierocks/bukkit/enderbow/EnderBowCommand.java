@@ -13,22 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.lexware.bukkit.enderbow;
+package uk.jamierocks.bukkit.enderbow;
 
-import org.bukkit.Material;
+import org.bukkit.Bukkit;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 /**
  * Created by jamie on 11/01/15.
  */
-public class EnderBow extends ItemStack {
-    public EnderBow() {
-        super(Material.BOW);
-
-        ItemMeta itemMeta = this.getItemMeta();
-        itemMeta.setDisplayName("Ender bow");
-
-        this.setItemMeta(itemMeta);
+public class EnderBowCommand implements CommandExecutor {
+    @Override
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        if(sender.hasPermission("enderbow.spawn")) {
+            ItemStack enderBow = new EnderBow();
+            Bukkit.getServer().getPlayer(sender.getName()).getInventory().addItem(enderBow);
+        } else {
+            sender.sendMessage("You do not have sufficient permissions to spawn an Ender bow");
+        }
+        return true;
     }
 }
