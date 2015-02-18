@@ -20,6 +20,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.inventory.ItemStack;
+import uk.jamierocks.bukkit.enderbow.data.locale.Language;
 
 /**
  * Created by jamie on 11/01/15.
@@ -30,7 +31,7 @@ public class EnderBowCommand implements CommandExecutor {
         if(sender.hasPermission("enderbow.spawn")) {
             Bukkit.getServer().getPlayer(sender.getName()).getInventory().addItem(EnderBowPlugin.getEnderBow());
         } else {
-            sender.sendMessage("You do not have sufficient permissions to spawn an Ender bow");
+            sender.sendMessage(Language.localize("permission.insufficient"));
         }
         return true;
     }

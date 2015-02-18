@@ -1,0 +1,7 @@
+locale.name=English (US)
+
+enderbow.name=Ender Bow
+
+permissions.insufficient=You do not have sufficient permissions to spawn an Ender bow
+
+mcstats.failed=Failed to submit statistics to MCStats!
