@@ -22,7 +22,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityShootBowEvent;
-import uk.jamierocks.bukkit.enderbow.data.locale.Language;
 
 /**
  * Created by jamie on 09/01/15.
@@ -36,7 +35,7 @@ public class EnderBowListener implements Listener {
     
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onEntityShootBowEvent(EntityShootBowEvent event) {
-        if(event.getBow().hasItemMeta() && event.getBow().getItemMeta().getDisplayName().equals(Language.localize("enderbow.name"))) {
+        if(event.getBow().hasItemMeta() && event.getBow().getItemMeta().getDisplayName().equals("Ender Bow")) {
             EntityShootEnderBowEvent entityShootEnderBowEvent = new EntityShootEnderBowEvent(event);
             plugin.getServer().getPluginManager().callEvent(entityShootEnderBowEvent);
             if(!entityShootEnderBowEvent.isCancelled()) {

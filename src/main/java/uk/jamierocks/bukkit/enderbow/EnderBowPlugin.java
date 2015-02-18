@@ -33,7 +33,7 @@ public class EnderBowPlugin extends JavaPlugin {
     private static final ItemStack enderBow = new ItemStack(Material.BOW) {
         {
             ItemMeta itemMeta = this.getItemMeta();
-            itemMeta.setDisplayName(Language.localize("enderbow.name"));
+            itemMeta.setDisplayName("Ender Bow");
 
             this.setItemMeta(itemMeta);
         }
