@@ -35,7 +35,7 @@ public class EnderBowListener implements Listener {
     
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onEntityShootBowEvent(EntityShootBowEvent event) {
-        if(event.getBow().hasItemMeta() && event.getBow().getItemMeta().getDisplayName().equals("Ender Bow")) {
+        if(event.getBow().hasItemMeta() && event.getBow().getItemMeta().getDisplayName().equals("Ender bow")) {
             EntityShootEnderBowEvent entityShootEnderBowEvent = new EntityShootEnderBowEvent(event);
             plugin.getServer().getPluginManager().callEvent(entityShootEnderBowEvent);
             if(!entityShootEnderBowEvent.isCancelled()) {

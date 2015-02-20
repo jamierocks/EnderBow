@@ -3,7 +3,7 @@ main: ${main.class}
 version: ${project.version}
 commands:
   enderbow:
-    description: Give the caller an EnderBow
+    description: Give the caller an Ender bow
     aliases:
       - eb
       - ebow
@@ -11,7 +11,11 @@ permissions:
   enderbow.*:
     description: Gives access to all EnderBow related commands
     children:
+      enderbow.give: true
       enderbow.spawn: true
+  enderbow.give:
+    description: Give the caller an Ender bow
+    default: op
   enderbow.spawn:
     description: Give the caller an Ender bow
     default: op

@@ -24,4 +24,8 @@ public class Settings {
     public static String getLanguage() {
         return EnderBowPlugin.getInstance().getConfig().getString("language", "enUS");
     }
+    
+    public static boolean isAutoUpdateEnabled() {
+        return EnderBowPlugin.getInstance().getConfig().getBoolean("enable_auto_update", false);
+    }
 }
