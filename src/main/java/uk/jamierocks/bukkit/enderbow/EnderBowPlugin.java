@@ -15,14 +15,12 @@
  */
 package uk.jamierocks.bukkit.enderbow;
 
-import net.gravitydevelopment.updater.Updater;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.mcstats.MetricsLite;
-import uk.jamierocks.bukkit.enderbow.data.Settings;
 import uk.jamierocks.bukkit.enderbow.data.locale.Language;
 
 import java.io.IOException;
@@ -43,10 +41,6 @@ public class EnderBowPlugin extends JavaPlugin {
     
     @Override
     public void onEnable() {
-        if(Settings.isAutoUpdateEnabled()) {
-            new Updater(this, 88505, getFile(), Updater.UpdateType.DEFAULT, true);
-        }
-        
         try {
             MetricsLite metrics = new MetricsLite(this);
             metrics.start();
