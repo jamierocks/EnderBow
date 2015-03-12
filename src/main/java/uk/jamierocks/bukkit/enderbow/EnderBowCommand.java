@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 Jamie Mansfield <https://github.com/lexware>
+ * Copyright 2015 Jamie Mansfield <https://github.com/jamierocks>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,11 +15,10 @@
  */
 package uk.jamierocks.bukkit.enderbow;
 
-import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.inventory.ItemStack;
+import org.bukkit.entity.Player;
 import uk.jamierocks.bukkit.enderbow.data.locale.Language;
 
 /**
@@ -29,7 +28,11 @@ public class EnderBowCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if(sender.hasPermission("enderbow.give") || sender.hasPermission("enderbow.spawn")) {
-            Bukkit.getServer().getPlayer(sender.getName()).getInventory().addItem(EnderBowPlugin.getEnderBow());
+            if(sender instanceof Player) {
+                ((Player) sender).getInventory().addItem(EnderBowPlugin.getEnderBow());
+            } else {
+                sender.sendMessage(Language.localize("server.give"));
+            }
         } else {
             sender.sendMessage(Language.localize("permission.insufficient"));
         }

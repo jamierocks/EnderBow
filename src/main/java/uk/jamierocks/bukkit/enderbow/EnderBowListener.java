@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 Jamie Mansfield <https://github.com/lexware>
+ * Copyright 2015 Jamie Mansfield <https://github.com/jamierocks>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,17 +27,12 @@ import org.bukkit.event.entity.EntityShootBowEvent;
  * Created by jamie on 09/01/15.
  */
 public class EnderBowListener implements Listener {
-    private final EnderBowPlugin plugin;
-
-    public EnderBowListener(EnderBowPlugin plugin) {
-        this.plugin = plugin;
-    }
-    
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onEntityShootBowEvent(EntityShootBowEvent event) {
-        if(event.getBow().hasItemMeta() && event.getBow().getItemMeta().getDisplayName().equals("Ender bow")) {
+        if(event.getBow().hasItemMeta() && event.getBow().getItemMeta().getDisplayName().equals("Ender bow") || event
+                .getBow() instanceof EnderBowPlugin.EnderBow) {
             EntityShootEnderBowEvent entityShootEnderBowEvent = new EntityShootEnderBowEvent(event);
-            plugin.getServer().getPluginManager().callEvent(entityShootEnderBowEvent);
+            EnderBowPlugin.getInstance().getServer().getPluginManager().callEvent(entityShootEnderBowEvent);
             if(!entityShootEnderBowEvent.isCancelled()) {
                 event.getEntity().launchProjectile(EnderPearl.class).setVelocity(event.getProjectile().getVelocity());
                 event.getEntity().getWorld().playSound(event.getEntity().getLocation(), Sound.ENDERMAN_TELEPORT, 1, 1);

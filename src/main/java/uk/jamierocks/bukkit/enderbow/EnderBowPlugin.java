@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 Jamie Mansfield <https://github.com/lexware>
+ * Copyright 2015 Jamie Mansfield <https://github.com/jamierocks>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,14 +31,7 @@ import java.io.IOException;
  * Created by jamie on 09/01/15.
  */
 public class EnderBowPlugin extends JavaPlugin {
-    private static final ItemStack enderBow = new ItemStack(Material.BOW) {
-        {
-            ItemMeta itemMeta = this.getItemMeta();
-            itemMeta.setDisplayName("Ender bow");
-
-            this.setItemMeta(itemMeta);
-        }
-    };
+    private static final ItemStack enderBow = new EnderBow();
     private static EnderBowPlugin instance;
     
     @Override
@@ -56,7 +49,7 @@ public class EnderBowPlugin extends JavaPlugin {
         
         instance = this;
         
-        getServer().getPluginManager().registerEvents(new EnderBowListener(this), this);
+        getServer().getPluginManager().registerEvents(new EnderBowListener(), this);
 
         getCommand("enderbow").setExecutor(new EnderBowCommand());
 
@@ -64,7 +57,7 @@ public class EnderBowPlugin extends JavaPlugin {
         enderBowRecipe.shape("eee", "ebe", "eee");
         enderBowRecipe.setIngredient('e', Material.ENDER_PEARL);
         enderBowRecipe.setIngredient('b', Material.BOW);
-        
+
         getServer().addRecipe(enderBowRecipe);
     }
     
@@ -79,5 +72,16 @@ public class EnderBowPlugin extends JavaPlugin {
     
     public static EnderBowPlugin getInstance() {
         return instance;
+    }
+    
+    public static class EnderBow extends ItemStack {
+        public EnderBow() {
+            super(Material.BOW);
+            
+            ItemMeta itemMeta = this.getItemMeta();
+            itemMeta.setDisplayName(Language.localize("enderbow.name"));
+
+            this.setItemMeta(itemMeta);
+        }
     }
 }

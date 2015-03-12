@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 Jamie Mansfield <https://github.com/lexware>
+ * Copyright 2015 Jamie Mansfield <https://github.com/jamierocks>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,17 +15,17 @@
  */
 package uk.jamierocks.bukkit.enderbow.data;
 
-import uk.jamierocks.bukkit.enderbow.EnderBowPlugin;
+import static uk.jamierocks.bukkit.enderbow.EnderBowPlugin.getInstance;
 
 /**
  * Created by jamie on 18/02/15.
  */
 public class Settings {
     public static String getLanguage() {
-        return EnderBowPlugin.getInstance().getConfig().getString("language", "enUS");
+        return getInstance().getConfig().getString("language", "enUS");
     }
     
     public static boolean isAutoUpdateEnabled() {
-        return EnderBowPlugin.getInstance().getConfig().getBoolean("enable_auto_update", false);
+        return getInstance().getConfig().getBoolean("enable.auto.updater", false);
     }
 }

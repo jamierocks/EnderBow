@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 Jamie Mansfield <https://github.com/lexware>
+ * Copyright 2015 Jamie Mansfield <https://github.com/jamierocks>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,38 +18,39 @@ package uk.jamierocks.bukkit.enderbow.api;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Projectile;
 import org.bukkit.event.Cancellable;
-import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
+import org.bukkit.event.entity.EntityEvent;
 import org.bukkit.event.entity.EntityShootBowEvent;
-import org.bukkit.inventory.ItemStack;
+import uk.jamierocks.bukkit.enderbow.EnderBowPlugin;
 
 /**
  * Created by jamie on 15/01/15.
  */
-public class EntityShootEnderBowEvent extends Event implements Cancellable {
+public class EntityShootEnderBowEvent extends EntityEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
-    private final LivingEntity entity;
-    private final ItemStack bow;
+    private final EnderBowPlugin.EnderBow bow;
     private Projectile projectile;
     private final float force;
     private boolean cancelled;
     
-    public EntityShootEnderBowEvent(LivingEntity entity, ItemStack bow, Projectile projectile, float force) {
-        this.entity = entity;
+    public EntityShootEnderBowEvent(LivingEntity entity, EnderBowPlugin.EnderBow bow, Projectile projectile, float force) {
+        super(entity);
         this.bow = bow;
         this.projectile = projectile;
         this.force = force;
     }
     
     public EntityShootEnderBowEvent(EntityShootBowEvent event) {
-        this(event.getEntity(), event.getBow(), (Projectile) event.getProjectile(), event.getForce());
+        this(event.getEntity(), (EnderBowPlugin.EnderBow) event.getBow(), (Projectile) event.getProjectile(), event
+                .getForce());
     }
-    
+
+    @Override
     public LivingEntity getEntity() {
-        return entity;
+        return (LivingEntity) super.getEntity();
     }
     
-    public ItemStack getBow() {
+    public EnderBowPlugin.EnderBow getBow() {
         return bow;
     }
     

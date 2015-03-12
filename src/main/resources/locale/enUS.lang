@@ -1,5 +1,9 @@
 locale.name=English (US)
 
+enderbow.name=Ender Bow
+
+server.give=Only players can receive an Ender bow
+
 permissions.insufficient=You do not have sufficient permissions to spawn an Ender bow
 
 mcstats.failed=Failed to submit statistics to MCStats!
