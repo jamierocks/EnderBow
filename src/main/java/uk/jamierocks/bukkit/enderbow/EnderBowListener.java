@@ -30,13 +30,23 @@ public class EnderBowListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onEntityShootBowEvent(EntityShootBowEvent event) {
-        if (event.getBow().hasItemMeta() && event.getBow().getItemMeta().getDisplayName().equals("Ender bow") || event
+        if ((event.getBow().hasItemMeta() && event.getBow().getItemMeta().getDisplayName().equals("Ender bow")) || event
                 .getBow() instanceof EnderBowPlugin.EnderBow) {
+            // Create custom event
             EntityShootEnderBowEvent entityShootEnderBowEvent = new EntityShootEnderBowEvent(event);
+            
+            // Call the custom event
             EnderBowPlugin.getInstance().getServer().getPluginManager().callEvent(entityShootEnderBowEvent);
+            
+            // Do the following, if it wasn't cancelled
             if (!entityShootEnderBowEvent.isCancelled()) {
+                // Fire an ender pearl
                 event.getEntity().launchProjectile(EnderPearl.class).setVelocity(event.getProjectile().getVelocity());
+                
+                // Play the 'ENDERMAN_TELEPORT' sound
                 event.getEntity().getWorld().playSound(event.getEntity().getLocation(), Sound.ENDERMAN_TELEPORT, 1, 1);
+                
+                // Cancel the original Event, so no arrows are fired
                 event.setCancelled(true);
             }
         }

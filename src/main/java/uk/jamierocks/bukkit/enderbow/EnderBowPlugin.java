@@ -17,6 +17,7 @@ package uk.jamierocks.bukkit.enderbow;
 
 import net.gravitydevelopment.updater.Updater;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -50,15 +51,19 @@ public class EnderBowPlugin extends JavaPlugin {
 
         instance = this;
 
+        // Register the event listener
         getServer().getPluginManager().registerEvents(new EnderBowListener(), this);
 
+        // Register the command
         getCommand("enderbow").setExecutor(new EnderBowCommand());
 
+        // Create the recipe
         ShapedRecipe enderBowRecipe = new ShapedRecipe(getEnderBow());
         enderBowRecipe.shape("eee", "ebe", "eee");
         enderBowRecipe.setIngredient('e', Material.ENDER_PEARL);
         enderBowRecipe.setIngredient('b', Material.BOW);
 
+        // Add the recipe
         getServer().addRecipe(enderBowRecipe);
     }
 
@@ -80,9 +85,9 @@ public class EnderBowPlugin extends JavaPlugin {
         public EnderBow() {
             super(Material.BOW);
 
+            // Get and set the ItemMeta
             ItemMeta itemMeta = this.getItemMeta();
             itemMeta.setDisplayName(Language.localize("enderbow.name"));
-
             this.setItemMeta(itemMeta);
         }
     }

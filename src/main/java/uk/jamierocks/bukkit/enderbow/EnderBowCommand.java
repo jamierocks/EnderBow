@@ -30,11 +30,14 @@ public class EnderBowCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
             if (sender.hasPermission("enderbow.give") || sender.hasPermission("enderbow.spawn")) {
+                // Is a Player and has sufficient permissions
                 ((Player) sender).getInventory().addItem(EnderBowPlugin.getEnderBow());
             } else {
+                // Is a Player, but lacks sufficient permissions
                 sender.sendMessage(Language.localize("permission.insufficient"));
             }
         } else {
+            // Is not a Player
             sender.sendMessage(Language.localize("give.notplayer"));
         }
         return true;

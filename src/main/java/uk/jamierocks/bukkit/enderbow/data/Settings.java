@@ -22,10 +22,20 @@ import static uk.jamierocks.bukkit.enderbow.EnderBowPlugin.getInstance;
  */
 public class Settings {
 
+    /**
+     * Gets the set language, defaults to 'enUS'
+     * 
+     * @return the set language
+     */
     public static String getLanguage() {
         return getInstance().getConfig().getString("language", "enUS");
     }
 
+    /**
+     * Gets if auto updating is enabled, default to false
+     *
+     * @return true if auto updating is enabled, false otherwise
+     */
     public static boolean isAutoUpdateEnabled() {
         return getInstance().getConfig().getBoolean("enable.auto.updater", false);
     }
