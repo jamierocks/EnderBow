@@ -25,16 +25,17 @@ import uk.jamierocks.bukkit.enderbow.data.locale.Language;
  * Created by jamie on 11/01/15.
  */
 public class EnderBowCommand implements CommandExecutor {
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if(sender.hasPermission("enderbow.give") || sender.hasPermission("enderbow.spawn")) {
-            if(sender instanceof Player) {
+        if (sender instanceof Player) {
+            if (sender.hasPermission("enderbow.give") || sender.hasPermission("enderbow.spawn")) {
                 ((Player) sender).getInventory().addItem(EnderBowPlugin.getEnderBow());
             } else {
-                sender.sendMessage(Language.localize("server.give"));
+                sender.sendMessage(Language.localize("permission.insufficient"));
             }
         } else {
-            sender.sendMessage(Language.localize("permission.insufficient"));
+            sender.sendMessage(Language.localize("give.notplayer"));
         }
         return true;
     }

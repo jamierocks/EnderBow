@@ -21,27 +21,28 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.entity.EntityEvent;
 import org.bukkit.event.entity.EntityShootBowEvent;
-import uk.jamierocks.bukkit.enderbow.EnderBowPlugin;
+import org.bukkit.inventory.ItemStack;
 
 /**
  * Created by jamie on 15/01/15.
  */
 public class EntityShootEnderBowEvent extends EntityEvent implements Cancellable {
+
     private static final HandlerList handlers = new HandlerList();
-    private final EnderBowPlugin.EnderBow bow;
+    private final ItemStack bow;
     private Projectile projectile;
     private final float force;
     private boolean cancelled;
-    
-    public EntityShootEnderBowEvent(LivingEntity entity, EnderBowPlugin.EnderBow bow, Projectile projectile, float force) {
+
+    public EntityShootEnderBowEvent(LivingEntity entity, ItemStack bow, Projectile projectile, float force) {
         super(entity);
         this.bow = bow;
         this.projectile = projectile;
         this.force = force;
     }
-    
+
     public EntityShootEnderBowEvent(EntityShootBowEvent event) {
-        this(event.getEntity(), (EnderBowPlugin.EnderBow) event.getBow(), (Projectile) event.getProjectile(), event
+        this(event.getEntity(), event.getBow(), (Projectile) event.getProjectile(), event
                 .getForce());
     }
 
@@ -49,19 +50,19 @@ public class EntityShootEnderBowEvent extends EntityEvent implements Cancellable
     public LivingEntity getEntity() {
         return (LivingEntity) super.getEntity();
     }
-    
-    public EnderBowPlugin.EnderBow getBow() {
+
+    public ItemStack getBow() {
         return bow;
     }
-    
+
     public Projectile getProjectile() {
         return projectile;
     }
-    
-    public void setProjectile(Projectile projectile){
+
+    public void setProjectile(Projectile projectile) {
         this.projectile = projectile;
     }
-    
+
     public float getForce() {
         return force;
     }

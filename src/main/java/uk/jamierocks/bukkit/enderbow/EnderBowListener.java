@@ -16,24 +16,25 @@
 package uk.jamierocks.bukkit.enderbow;
 
 import org.bukkit.Sound;
-import uk.jamierocks.bukkit.enderbow.api.EntityShootEnderBowEvent;
 import org.bukkit.entity.EnderPearl;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityShootBowEvent;
+import uk.jamierocks.bukkit.enderbow.api.EntityShootEnderBowEvent;
 
 /**
  * Created by jamie on 09/01/15.
  */
 public class EnderBowListener implements Listener {
+
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onEntityShootBowEvent(EntityShootBowEvent event) {
-        if(event.getBow().hasItemMeta() && event.getBow().getItemMeta().getDisplayName().equals("Ender bow") || event
+        if (event.getBow().hasItemMeta() && event.getBow().getItemMeta().getDisplayName().equals("Ender bow") || event
                 .getBow() instanceof EnderBowPlugin.EnderBow) {
             EntityShootEnderBowEvent entityShootEnderBowEvent = new EntityShootEnderBowEvent(event);
             EnderBowPlugin.getInstance().getServer().getPluginManager().callEvent(entityShootEnderBowEvent);
-            if(!entityShootEnderBowEvent.isCancelled()) {
+            if (!entityShootEnderBowEvent.isCancelled()) {
                 event.getEntity().launchProjectile(EnderPearl.class).setVelocity(event.getProjectile().getVelocity());
                 event.getEntity().getWorld().playSound(event.getEntity().getLocation(), Sound.ENDERMAN_TELEPORT, 1, 1);
                 event.setCancelled(true);

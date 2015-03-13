@@ -31,24 +31,25 @@ import java.io.IOException;
  * Created by jamie on 09/01/15.
  */
 public class EnderBowPlugin extends JavaPlugin {
+
     private static final ItemStack enderBow = new EnderBow();
     private static EnderBowPlugin instance;
-    
+
     @Override
     public void onEnable() {
-        if(Settings.isAutoUpdateEnabled()) {
+        if (Settings.isAutoUpdateEnabled()) {
             new Updater(this, 88505, getFile(), Updater.UpdateType.DEFAULT, true);
         }
-        
+
         try {
             MetricsLite metrics = new MetricsLite(this);
             metrics.start();
         } catch (IOException e) {
             getLogger().info(Language.localize("mcstats.failed"));
         }
-        
+
         instance = this;
-        
+
         getServer().getPluginManager().registerEvents(new EnderBowListener(), this);
 
         getCommand("enderbow").setExecutor(new EnderBowCommand());
@@ -60,24 +61,25 @@ public class EnderBowPlugin extends JavaPlugin {
 
         getServer().addRecipe(enderBowRecipe);
     }
-    
+
     @Override
     public void onDisable() {
         getServer().resetRecipes();
     }
-    
+
     public static ItemStack getEnderBow() {
         return enderBow;
     }
-    
+
     public static EnderBowPlugin getInstance() {
         return instance;
     }
-    
+
     public static class EnderBow extends ItemStack {
+
         public EnderBow() {
             super(Material.BOW);
-            
+
             ItemMeta itemMeta = this.getItemMeta();
             itemMeta.setDisplayName(Language.localize("enderbow.name"));
 

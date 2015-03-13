@@ -28,6 +28,7 @@ import java.util.Properties;
  * Adapted for EnderBow on 18/02/2015
  */
 public final class Language {
+
     private static final Map<String, Properties> langs = new HashMap<String, Properties>();
     private static volatile String current;
     private static final String fallback = "enUS";

@@ -21,10 +21,11 @@ import static uk.jamierocks.bukkit.enderbow.EnderBowPlugin.getInstance;
  * Created by jamie on 18/02/15.
  */
 public class Settings {
+
     public static String getLanguage() {
         return getInstance().getConfig().getString("language", "enUS");
     }
-    
+
     public static boolean isAutoUpdateEnabled() {
         return getInstance().getConfig().getBoolean("enable.auto.updater", false);
     }
