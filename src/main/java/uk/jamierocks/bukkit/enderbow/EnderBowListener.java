@@ -45,10 +45,10 @@ public class EnderBowListener implements Listener {
 
                 // Play the 'ENDERMAN_TELEPORT' sound
                 event.getEntity().getWorld().playSound(event.getEntity().getLocation(), Sound.ENDERMAN_TELEPORT, 1, 1);
-
-                // Cancel the original Event, so no arrows are fired
-                event.setCancelled(true);
             }
+
+            // Cancel the original Event, so no arrows are fired
+            event.setCancelled(true);
         }
     }
 }
