@@ -45,7 +45,7 @@ public class EnderBowPlugin extends JavaPlugin {
             MetricsLite metrics = new MetricsLite(this);
             metrics.start();
         } catch (IOException e) {
-            getLogger().info(Language.localize("mcstats.failed"));
+            getLogger().info("Failed to submit statistics to MCStats!");
         }
 
         instance = this;
