@@ -13,10 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package uk.jamierocks.bukkit.enderbow.api;
+package uk.jamierocks.bukkit.enderbow.api.event;
 
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Projectile;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.entity.EntityEvent;
@@ -30,20 +29,17 @@ public class EntityShootEnderBowEvent extends EntityEvent implements Cancellable
 
     private static final HandlerList handlers = new HandlerList();
     private final ItemStack bow;
-    private Projectile projectile;
     private final float force;
     private boolean cancelled;
 
-    public EntityShootEnderBowEvent(LivingEntity entity, ItemStack bow, Projectile projectile, float force) {
+    public EntityShootEnderBowEvent(LivingEntity entity, ItemStack bow, float force) {
         super(entity);
         this.bow = bow;
-        this.projectile = projectile;
         this.force = force;
     }
 
     public EntityShootEnderBowEvent(EntityShootBowEvent event) {
-        this(event.getEntity(), event.getBow(), (Projectile) event.getProjectile(), event
-                .getForce());
+        this(event.getEntity(), event.getBow(), event.getForce());
     }
 
     @Override
@@ -51,18 +47,20 @@ public class EntityShootEnderBowEvent extends EntityEvent implements Cancellable
         return (LivingEntity) super.getEntity();
     }
 
+    /**
+     * Gets the {@code ItemStack} used to fire the arrow.
+     *
+     * @return the {@code ItemStack} involved in this event
+     */
     public ItemStack getBow() {
         return bow;
     }
 
-    public Projectile getProjectile() {
-        return projectile;
-    }
-
-    public void setProjectile(Projectile projectile) {
-        this.projectile = projectile;
-    }
-
+    /**
+     * Gets the force the ender pearl was launched with
+     *
+     * @return ender pearl shooting force, up to 1.0
+     */
     public float getForce() {
         return force;
     }

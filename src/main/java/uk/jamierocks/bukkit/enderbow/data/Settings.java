@@ -24,7 +24,7 @@ public class Settings {
 
     /**
      * Gets the set language, defaults to 'enUS'
-     * 
+     *
      * @return the set language
      */
     public static String getLanguage() {
