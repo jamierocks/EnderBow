@@ -15,6 +15,34 @@
         <main.class>${project.groupId}.${project.artifactId}.${project.name}Plugin</main.class>
     </properties>
 
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>jmansfield</id>
+            <name>Jamie Mansfield</name>
+            <email>malgm@lapis.blue</email>
+            <url>https://github.com/jamierocks</url>
+            <timezone>GMT/England</timezone>
+            <roles>
+                <role>Project lead</role>
+                <role>Developer</role>
+            </roles>
+        </developer>
+    </developers>
+
+    <scm>
+        <developerConnection>scm:git:git@github.com:jamierocks/EnderBow.git</developerConnection>
+        <connection>scm:git:git://github.com/jamierocks/EnderBow.git</connection>
+        <url>https://github.com/jamierocks/EnderBow/tree/master</url>
+    </scm>
+
     <repositories>
         <repository>
             <id>bukkit-repo</id>
@@ -115,5 +143,25 @@
                 </executions>
             </plugin>
         </plugins>
+
+
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-file</artifactId>
+                <version>2.7</version>
+            </extension>
+        </extensions>
     </build>
+
+    <distributionManagement>
+        <repository>
+            <id>lex-releases</id>
+            <url>file://${env.REPO_GLOBAL}</url>
+        </repository>
+        <snapshotRepository>
+            <id>lex-snapshots</id>
+            <url>file://${env.REPO_GLOBAL}</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>
