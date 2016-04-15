@@ -1,0 +1,55 @@
+plugins {
+    id 'java'
+
+    id 'idea'
+    id 'eclipse'
+
+    id 'net.minecrell.licenser' version '0.1.5'
+    id 'com.github.johnrengelman.shadow' version '1.2.3'
+}
+
+sourceCompatibility = '1.7'
+targetCompatibility = '1.7'
+
+group = 'uk.jamierocks.bukkit'
+version = '1.5.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven {
+        url 'http://repo.bukkit.org/content/groups/public'
+    }
+    maven {
+        url 'http://repo.gravitydevelopment.net'
+    }
+    maven {
+        url 'http://repo.mcstats.org/content/repositories/public'
+    }
+}
+
+dependencies {
+    compile 'org.bukkit:bukkit:1.7.9-R0.1'
+    compile 'net.gravitydevelopment.updater:updater:2.3'
+    compile 'org.mcstats.bukkit:metrics-lite:R7'
+}
+
+license {
+    header rootProject.file('HEADER.txt')
+    include '**/*.java'
+}
+
+shadowJar {
+    dependencies {
+        include dependency('net.gravitydevelopment.updater:updater:2.3')
+        include dependency('org.mcstats.bukkit:metrics-lite:R7')
+    }
+    classifier = ''
+}
+
+artifacts {
+    shadowJar
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.12'
+}

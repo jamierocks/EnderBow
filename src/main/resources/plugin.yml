@@ -1,9 +1,9 @@
-name: ${project.name}
-main: ${main.class}
-version: ${project.version}
+name: EnderBow
+main: uk.jamierocks.bukkit.enderbow.EnderBowPlugin
+version: 1.5.0
 commands:
   enderbow:
-    description: Give the caller an Ender bow
+    description: Give the caller an Ender Bow
     aliases:
       - eb
       - ebow
@@ -14,8 +14,8 @@ permissions:
       enderbow.give: true
       enderbow.spawn: true
   enderbow.give:
-    description: Give the caller an Ender bow
+    description: Give the caller an Ender Bow
     default: op
   enderbow.spawn:
-    description: Give the caller an Ender bow
+    description: Give the caller an Ender Bow
     default: op
